@@ -10,7 +10,7 @@ export default [{
   id: '2',
   description: 'rent',
   note: '',
-  amount: 19600,
+  amount: 109500,
   createdAt: moment(0).subtract(4, 'days').valueOf()
 }, {
   id: '3',
