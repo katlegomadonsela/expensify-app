@@ -1,23 +1,31 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
 
 // ADD_EXPENSE
-export const addExpense = (
-  {
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-  } = {}
-) => ({
+export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
-  expense: {
-    id: uuid(),
-    description: description,
-    note: note,
-    amount: amount,
-    createdAt: createdAt
-  }
+  expense: expense
 });
+
+
+export const startAddExpense = (expenseData = {}) => { // lesson 152 - 'asynchronous redux actions'
+  return (dispatch) => {
+    const {
+      description = '',
+      note = '',
+      amount = 0,
+      createdAt = 0
+    } = expenseData;
+    const expense = {description, note, amount, createdAt}
+
+    return database.ref('expenses').push(expense).then((ref) => { // added return much later - lesson 153
+      dispatch(addExpense({
+        id: ref.key,
+        ...expense
+      }));
+    });
+  };
+}
 
 
 // REMOVE_EXPENSE
