@@ -10,6 +10,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import {firebase} from './firebase/firebase';
+import LoadingPage from './components/LoadingPage';
 
 
 const store = configureStore(); //allows us to use store methods such as store.dispatch, store.getState, store.subscribe
@@ -31,7 +32,7 @@ const renderApp = () => {
 
 
 const appRoot = document.getElementById("app");
-ReactDOM.render(<p>Loading...</p>, appRoot);
+ReactDOM.render(<LoadingPage/>, appRoot);
 
 
 
